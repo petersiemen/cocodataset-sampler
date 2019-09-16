@@ -96,7 +96,7 @@ class CocoDatasetImageIdSampler:
         return image_ids_to_keep
 
 
-def run_for_2014(annotations_dir, image_dir, out_dir):
+def run_for_2014(annotations_dir, image_dir, out_dir, n_per_category):
     instances_val = os.path.join(annotations_dir, 'instances_val2014.json')
     instances_train = os.path.join(annotations_dir, 'instances_train2014.json')
     captions_val = os.path.join(annotations_dir, 'captions_val2014.json')
@@ -118,7 +118,7 @@ def run_for_2014(annotations_dir, image_dir, out_dir):
     coco_writer.generate_cp_image_file(filtered_image_info_test, orig_image_test, 'test2014', 'cp_image_test2014.sh')
 
     coco_val = COCO(instances_val)
-    sampler_val = CocoDatasetImageIdSampler(coco_val, 10)
+    sampler_val = CocoDatasetImageIdSampler(coco_val, n_per_category)
     image_ids_to_keep_from_val = sampler_val.get_image_ids_to_keep()
 
     filtered_instances_val = CocoDatasetFilter.run(coco_val, image_ids_to_keep_from_val)
@@ -133,7 +133,7 @@ def run_for_2014(annotations_dir, image_dir, out_dir):
     coco_writer.generate_cp_image_file(filtered_instances_val, orig_image_val, 'val2014', 'cp_image_val2014.sh')
 
     coco_train = COCO(instances_train)
-    sampler_train = CocoDatasetImageIdSampler(coco_train, 10)
+    sampler_train = CocoDatasetImageIdSampler(coco_train, n_per_category)
     image_ids_to_keep_from_train = sampler_train.get_image_ids_to_keep()
 
     filtered_instances_train = CocoDatasetFilter.run(coco_train, image_ids_to_keep_from_train)
@@ -157,11 +157,12 @@ if __name__ == '__main__':
                         help='where to find the image files')
     parser.add_argument('--out-dir', dest='out_dir', type=str,
                         help='where to write to')
+    parser.add_argument('--n-per-category', dest='n_per_category', type=int,
+                        help='how many images to keep per category', default=10)
 
     args = parser.parse_args()
     print(args)
     if (args.annotations_dir is None or args.image_dir is None or args.out_dir is None):
         parser.print_help()
 
-    annotations_dir = args.annotations_dir
-    run_for_2014(annotations_dir=args.annotations_dir, image_dir=args.image_dir, out_dir=args.out_dir)
+    run_for_2014(annotations_dir=args.annotations_dir, image_dir=args.image_dir, out_dir=args.out_dir, n_per_category=args.n_per_category)
