@@ -162,7 +162,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     print(args)
-    if (args.annotations_dir is None or args.image_dir is None or args.out_dir is None):
+    if args.annotations_dir is None or args.image_dir is None or args.out_dir is None:
         parser.print_help()
+        sys.exit(0)
 
-    run_for_2014(annotations_dir=args.annotations_dir, image_dir=args.image_dir, out_dir=args.out_dir, n_per_category=args.n_per_category)
+    run_for_2014(annotations_dir=args.annotations_dir, image_dir=args.image_dir, out_dir=args.out_dir,
+                 n_per_category=args.n_per_category)
