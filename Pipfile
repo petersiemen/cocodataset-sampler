@@ -5,12 +5,13 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
-pytest = "*"
 
 [packages]
 cython = "*"
 pycocotools = "*"
 matplotlib = "*"
+jupyter = "*"
+scikit-image = "*"
 
 [requires]
 python_version = "3.6"

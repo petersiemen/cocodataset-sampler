@@ -1,4 +1,5 @@
 .idea
 *.iml
 .venv
+.ipynb_checkpoints/
 out

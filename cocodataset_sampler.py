@@ -161,7 +161,6 @@ if __name__ == '__main__':
                         help='how many images to keep per category', default=10)
 
     args = parser.parse_args()
-    print(args)
     if args.annotations_dir is None or args.image_dir is None or args.out_dir is None:
         parser.print_help()
         sys.exit(0)
