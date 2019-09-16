@@ -1,10 +1,11 @@
 # [COCO](http://cocodataset.org/#home) - 2014 Dataset - Sampler
 
-The Microsoft COCO Dataset is widely used in Computer Vision research. 
+The Microsoft COCO Dataset is widely used in Computer Vision research - not surprisingly it is quite huge.  
 
-It is quite huge. In order to be able to experiment quick and easy with your Network Architectures 
-you might want to have a fair sample of it on your local machine.
+In order to be able to experiment nice and easy with your Neural Network Architectures  
+you might want to have a fair sample of it that fits onto your notebook.
 
+This python scripts generates a sample for/from the 2014 COCO dataset. 
 
 ## How to run the sampler
 1. install python 3.6 and it's development files 
@@ -65,7 +66,7 @@ you might want to have a fair sample of it on your local machine.
         .../datasets/coco/annotations/instances_train2014.json  
         .../datasets/coco/annotations/person_keypoints_train2014.json
       ```
-
+6. optional: use the jupyter notebook to look at the sample
 
 ### Some Notes about COCO
 #### Scene understanding
